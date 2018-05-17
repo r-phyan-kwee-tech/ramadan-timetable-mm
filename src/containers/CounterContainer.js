@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import AppBar from 'material-ui/AppBar';
 import { Counter } from 'components'
 import { createStructuredSelector, createSelector } from 'reselect'
 
@@ -29,12 +30,15 @@ class CounterContainer extends React.Component {
 
   render() {
     return (
+      <div>
       <Counter
         counter={this.props.counter}
         increment={this.increment}
         decrement={this.decrement}
         incrementIfOdd={this.incrementIfOdd}
       />
+      
+      </div>
     )
   }
 }
