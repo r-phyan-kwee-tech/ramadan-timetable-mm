@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import AppBar from 'material-ui/AppBar';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Counter } from 'components'
 import { createStructuredSelector, createSelector } from 'reselect'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as CounterActions from 'actions/counter'
-
+injectTapEventPlugin();
 class CounterContainer extends React.Component {
   static propTypes = {
     increment: PropTypes.func.isRequired,
