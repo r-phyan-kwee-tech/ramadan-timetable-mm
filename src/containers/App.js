@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {Counter} from 'components'
+import {Counter,AppCompatToolbar} from 'components'
+
 import {createStructuredSelector, createSelector} from 'reselect'
 
 import {bindActionCreators} from 'redux'
@@ -37,11 +38,12 @@ class CounterContainer extends React.Component {
   render() {
     return (
       <div>
-        <Counter
+        <AppCompatToolbar />
+        {/* <Counter
           counter={this.props.counter}
           increment={this.increment}
           decrement={this.decrement}
-          incrementIfOdd={this.incrementIfOdd}/>
+          incrementIfOdd={this.incrementIfOdd}/> */}
 
       </div>
     )
