@@ -20,6 +20,9 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased; }
 
+.AppCompatToolbar-root-1 .MuiToolbar-gutters-42 {
+  padding-right: 0px !important; }
+
 html {
   height: 100%; }
 
