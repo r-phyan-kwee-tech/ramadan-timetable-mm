@@ -1,6 +1,39 @@
 
-@import 'common/settings.scss';
+@import 'util/math';
+@import 'util/unit';
+@import 'util/value';
+@import 'util/direction';
+@import 'util/color';
+@import 'util/selector';
+@import 'util/flex';
+@import 'util/breakpoint';
+@import 'util/mixins';
+@import 'util/typography';
+@import 'common/settings';
+@import 'common/font';
+
+@import 'component/appbar';
+
+html{
+    height: 100%;
+}
 
 body{
-    background:$denim-light !important;
+    margin:0 auto;
+    overflow: scroll;
+    position: relative;
+    @include breakpoint(large xlarge){
+        background:$jet !important;
+    }
+    height: 100%; 
+}
+
+#root{
+    background:$lighter-gray;
+    @include breakpoint(large xlarge) {
+        margin:0 auto;
+        width:50%;
+    }
+    min-height: 100%;
+    height: auto;
 }

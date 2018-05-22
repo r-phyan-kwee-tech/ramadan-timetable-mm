@@ -1,7 +1,7 @@
-import { injectGlobal } from 'styled-components'
+import {injectGlobal} from 'styled-components'
 
 /* eslint no-unused-expressions: 0 */
-injectGlobal`
+injectGlobal `
   html,
   body {
     height: 100%;
@@ -11,6 +11,6 @@ injectGlobal`
   body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    
   }
 `

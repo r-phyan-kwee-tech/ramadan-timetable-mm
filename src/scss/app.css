@@ -1,2 +1,45 @@
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v37/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format("woff2"); }
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased; }
+
+.AppCompatToolbar-root-1 .MuiToolbar-gutters-42 {
+  padding-right: 0px !important; }
+
+html {
+  height: 100%; }
+
 body {
-  background: #6ea2c1 !important; }
+  margin: 0 auto;
+  overflow: scroll;
+  position: relative;
+  height: 100%; }
+  @media screen and (min-width: 64em) {
+    body {
+      background: #222222 !important; } }
+
+#root {
+  background: #f9f9f9;
+  min-height: 100%;
+  height: auto; }
+  @media screen and (min-width: 64em) {
+    #root {
+      margin: 0 auto;
+      width: 50%; } }
