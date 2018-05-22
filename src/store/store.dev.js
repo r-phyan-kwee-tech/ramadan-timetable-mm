@@ -1,4 +1,5 @@
 import {createStore, applyMiddleware} from 'redux'
+import api from '../middleware/api'
 import ReduxThunk from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import {routerMiddleware} from 'react-router-redux'
@@ -7,7 +8,7 @@ import rootReducer from 'reducers'
 
 export default function configureStore(initialState = {}, history) {
 
-  const middlewares = [ReduxThunk, routerMiddleware(history), createLogger()]
+  const middlewares = [ReduxThunk, api, routerMiddleware(history), createLogger()]
 
   const enhancers = [
     applyMiddleware(...middlewares),
