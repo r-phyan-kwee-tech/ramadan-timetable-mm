@@ -5,7 +5,7 @@ import _ from 'lodash';
 // normalizes the result JSON according to schema. This makes every API response
 // have the same shape, regardless of how nested it was.
 function callApi(endpoint, method, params, headers, formdata) {
-    const API_ROOT = "http://192.168.1.103:3000/";
+    const API_ROOT = "http://ramdan-api.herokuapp.com/";
     const url = API_ROOT + endpoint;
 
     let query = {
