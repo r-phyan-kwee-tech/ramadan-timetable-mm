@@ -20,8 +20,21 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased; }
 
-.AppCompatToolbar-root-1 .MuiToolbar-gutters-42 {
-  padding-right: 0px !important; }
+.app-toolbar {
+  flex-grow: 0;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  top: 0; }
+  @media screen and (min-width: 64em) {
+    .app-toolbar {
+      width: 50%; } }
+  .app-toolbar .mytoolbar {
+    padding-right: 0px !important; }
+
+.time-table-card {
+  margin: 0.5em 1em;
+  min-height: 6em; }
 
 html {
   height: 100%; }

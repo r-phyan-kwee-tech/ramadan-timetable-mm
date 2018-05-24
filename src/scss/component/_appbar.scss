@@ -1,5 +1,15 @@
-.AppCompatToolbar-root-1{
-    .MuiToolbar-gutters-42{
+.app-toolbar{
+    flex-grow: 0;
+    flex-direction: row;
+    position: fixed;
+    width: 100%;
+    top:0; 
+    @include breakpoint(large xlarge){
+        width:50%;
+    }
+    
+    .mytoolbar{
+        
         padding-right:0px !important;
     }
 }

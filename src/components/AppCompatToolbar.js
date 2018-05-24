@@ -35,9 +35,9 @@ const styles = theme => ({
 const AppCompatToolbar = (props) => {
   const {classes} = props;
   return (
-    <div className={classes.root}>
+    <div className="app-toolbar">
       <AppBar position="static" color="default">
-        <Toolbar>
+        <Toolbar className="mytoolbar">
           <Typography variant="title" color="inherit" className={classes.flex}>
             ရန်ကုန်တိုင်: အချိန်ဇယား
           </Typography>

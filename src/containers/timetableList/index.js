@@ -1,10 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
+import {AppCompatToolbar} from 'components'
+import {withStyles} from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {getTimetableList, getOfflineTimetableList} from './actions/TimetableListAction'
 
 export class TimetableList extends React.Component {
-
+    state = {
+        days: []
+    };
     componentWillMount() {
         // console.log(this.props.route.push('/'))
         this
@@ -27,7 +34,7 @@ export class TimetableList extends React.Component {
                                 return item
                             }
                         });
-                        console.log(days);
+                        this.setState({days: days});
                     }
                 }))
                 .catch((error) => {
@@ -39,9 +46,23 @@ export class TimetableList extends React.Component {
     }
 
     render() {
+
+        let list = this
+            .state
+            .days
+            .map((items, index) => {
+                return (
+                    <Card key={index} className="time-table-card">
+                        <CardContent>{items.dayMm}</CardContent>
+                    </Card>
+                )
+            })
+
+        console.log(list)
         return (
             <div>
-                Timetable List
+                <AppCompatToolbar/>
+                <div>{list}</div>
             </div>
         )
     }
