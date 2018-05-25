@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
   root: {
@@ -21,23 +20,20 @@ const styles = theme => ({
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
+    marginRight: 20
   },
   iconContainer: {
     flex: 0,
-    justifyContent: `flex-end`,
-
+    justifyContent: `flex-end`
   },
   button: {
     margin: theme.spacing.unit,
-    flex: 0,
-
-
+    flex: 0
   }
 });
 
 const AppCompatToolbar = (props) => {
-  const { classes } = props;
+  const {classes} = props;
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -57,7 +53,7 @@ const AppCompatToolbar = (props) => {
 }
 
 AppCompatToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(AppCompatToolbar);

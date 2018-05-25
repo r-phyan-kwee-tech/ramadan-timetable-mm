@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Counter, AppCompatToolbar } from 'components'
-import { createStructuredSelector, createSelector } from 'reselect'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {AppCompatToolbar} from 'components'
+import {createStructuredSelector, createSelector} from 'reselect'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import * as CounterActions from 'actions/counter'
 import Drawer from '@material-ui/core/Drawer';
 
@@ -38,21 +38,13 @@ class CounterContainer extends React.Component {
   render() {
     return (
       <div>
-        <AppCompatToolbar />
-        {/* <Counter
+        <AppCompatToolbar/> {/* <Counter
           counter={this.props.counter}
           increment={this.increment}
           decrement={this.decrement}
           incrementIfOdd={this.incrementIfOdd}/> */}
-        <Drawer
-          anchor="bottom"
-          open={false}
-        >
-          <div
-            tabIndex={0}
-            role="button"
-          >
-          </div>
+        <Drawer anchor="bottom" open={false}>
+          <div tabIndex={0} role="button"></div>
         </Drawer>
       </div>
     )

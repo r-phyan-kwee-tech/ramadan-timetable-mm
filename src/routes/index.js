@@ -1,5 +1,5 @@
 import React from 'react'
-import {App,TimetableList} from 'containers'
+import {TimetableList} from 'containers'
 // import {BrowserRouter as Router, Route} from 'react-router-dom' import
 import {Route} from 'react-router-dom'
 import {ConnectedRouter} from 'react-router-redux'
@@ -11,7 +11,7 @@ export default() => (
   <ConnectedRouter history={createHistory()}>
     <Container>
       <Route path="/" component={TimetableList}/>
-      
+
     </Container>
   </ConnectedRouter>
 )
