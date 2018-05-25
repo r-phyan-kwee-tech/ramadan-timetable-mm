@@ -1,26 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { AppCompatToolbar } from 'components'
-import { createStructuredSelector, createSelector } from 'reselect'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {AppCompatToolbar} from 'components'
+import {createStructuredSelector, createSelector} from 'reselect'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import * as CounterActions from 'actions/counter'
 import Drawer from '@material-ui/core/Drawer';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
-import ImageIcon from "@material-ui/icons/Image";
-import WorkIcon from "@material-ui/icons/Work";
-import BeachAccessIcon from "@material-ui/icons/BeachAccess";
+import MyLocationIcon from "@material-ui/icons/MyLocation";
+import GroupIcon from "@material-ui/icons/Group";
+import FontDownloadIcon from "@material-ui/icons/FontDownload";
+import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
 import Divider from "@material-ui/core/Divider";
-
 
 injectTapEventPlugin();
 class CounterContainer extends React.Component {
   state = {
-    bottom: true
+    bottom: false
   }
   static propTypes = {
     increment: PropTypes.func.isRequired,
@@ -30,9 +30,7 @@ class CounterContainer extends React.Component {
   }
 
   toggleDrawer = (side, open) => () => {
-    this.setState({
-      [side]: open,
-    });
+    this.setState({[side]: open});
   };
 
   increment = () => {
@@ -53,44 +51,53 @@ class CounterContainer extends React.Component {
       .incrementIfOdd()
   }
 
+  onMenuClick = () => {
+    //TODO implement OnMenu click Here
+    this.setState({bottom: true})
+  }
+
   render() {
+    const {bottom} = this.state;
     return (
       <div>
-        <AppCompatToolbar /> {/* <Counter
+        <AppCompatToolbar onMenuClick={this.onMenuClick}/> {/* <Counter
           counter={this.props.counter}
           increment={this.increment}
           decrement={this.decrement}
           incrementIfOdd={this.incrementIfOdd}/> */}
         <Drawer
-          open={this.state.bottom}
+          open={bottom}
           onClose={this.toggleDrawer('bottom', false)}
-          anchor="bottom" >
+          anchor="bottom">
           <div
             role="button"
             onClick={this.toggleDrawer('bottom', false)}
-            onKeyDown={this.toggleDrawer('bottom', false)} >
+            onKeyDown={this.toggleDrawer('bottom', false)}>
             <List >
               <ListItem button>
-                <Avatar>
-                  <ImageIcon />
-                </Avatar>
-                <ListItemText primary="Photos" />
+
+                <MyLocationIcon/>
+
+                <ListItemText primary="Change Locations"/>
               </ListItem>
-              <li>
-                <Divider inset />
-              </li>
+
               <ListItem button>
-                <Avatar>
-                  <WorkIcon />
-                </Avatar>
-                <ListItemText primary="Work" />
+
+                <FontDownloadIcon/>
+
+                <ListItemText primary="Font Settings"/>
               </ListItem>
-              <Divider inset component="li" />
               <ListItem button>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" />
+
+                <GroupIcon/>
+
+                <ListItemText primary="Credits"/>
+              </ListItem>
+              <ListItem button>
+
+                <LocalLibraryIcon/>
+
+                <ListItemText primary="Licenses"/>
               </ListItem>
             </List>
           </div>

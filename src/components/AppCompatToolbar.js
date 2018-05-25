@@ -4,7 +4,7 @@ import {withStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Icon from '@material-ui/core/Icon';
+import TuneIcon from "@material-ui/icons/Tune";
 import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
@@ -42,8 +42,11 @@ const AppCompatToolbar = (props) => {
             ရန်ကုန်တိုင်: အချိန်ဇယား
           </Typography>
           <div className={classes.iconContainer}>
-            <IconButton className={classes.button} aria-label="Delete">
-              <Icon>more_vert</Icon>
+            <IconButton
+              className={classes.button}
+              aria-label="Delete"
+              onClick={() => props.onMenuClick()}>
+              <TuneIcon/>
             </IconButton>
           </div>
         </Toolbar>
