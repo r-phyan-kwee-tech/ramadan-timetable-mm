@@ -1,16 +1,28 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux'
-import {AppCompatToolbar} from 'components'
-import {withStyles} from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { AppCompatToolbar } from 'components'
+import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {getTimetableList, getOfflineTimetableList} from './actions/TimetableListAction'
+import BottomDrawer from '../../components/BottomDrawer'
+import { getTimetableList, getOfflineTimetableList } from './actions/TimetableListAction'
+
+const styles = theme => ({
+    progress: {
+
+        top: `calc(100vh/2)`,
+        left: `calc(100vw/2.1)`,
+        position: `fixed`
+    },
+});
 
 export class TimetableList extends React.Component {
     state = {
-        days: []
+        days: [],
+        bottom: false,
+        loading: true
     };
     componentWillMount() {
         // console.log(this.props.route.push('/'))
@@ -34,19 +46,25 @@ export class TimetableList extends React.Component {
                                 return item
                             }
                         });
-                        this.setState({days: days});
+                        
+                        this.setState({ days: days,loading:false });
                     }
                 }))
                 .catch((error) => {
                     console.log(error)
                 })
-        } else {}
+        } else { }
         //TODO Work with other props here
 
     }
+    onMenuClick = () => {
+        //TODO implement OnMenu click Here
+        this.setState({ bottom: true })
+    }
 
     render() {
-
+        const { bottom,loading } = this.state;
+        const { classes } = this.props;
         let list = this
             .state
             .days
@@ -58,11 +76,19 @@ export class TimetableList extends React.Component {
                 )
             })
 
-        console.log(list)
+
         return (
             <div>
-                <AppCompatToolbar/>
-                <div>{list}</div>
+                <AppCompatToolbar onMenuClick={this.onMenuClick} />
+                {loading &&
+                    <CircularProgress className={classes.progress} color="secondary" size={50} />
+
+                }
+                {!loading &&
+                    <div>{list}</div>
+                }
+
+                <BottomDrawer isOpen={bottom} />
             </div>
         )
     }
@@ -76,4 +102,5 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(state => ({items: state.TimetableListReducer.items, paging: state.TimetableListReducer.paging, error: state.TimetableListReducer.error}), mapDispatchToProps)(TimetableList);
+
+export default connect(state => ({ items: state.TimetableListReducer.items, paging: state.TimetableListReducer.paging, error: state.TimetableListReducer.error }), mapDispatchToProps)(withStyles(styles)(TimetableList));

@@ -10,7 +10,7 @@ const Container = styled.div `text-align: center;`
 export default() => (
   <ConnectedRouter history={createHistory()}>
     <Container>
-      <Route path="/" component={App}/>
+      <Route path="/" component={TimetableList}/>
 
     </Container>
   </ConnectedRouter>

@@ -52,8 +52,9 @@ body{
 
 #root{
     background:$lighter-gray;
+    margin:4em auto 0 auto;
     @include breakpoint(large xlarge) {
-        margin:0 auto;
+        
         width:50%;
     }
     min-height: 100%;

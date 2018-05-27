@@ -71,9 +71,9 @@ body {
 
 #root {
   background: #f9f9f9;
+  margin: 4em auto 0 auto;
   min-height: 100%;
   height: auto; }
   @media screen and (min-width: 64em) {
     #root {
-      margin: 0 auto;
       width: 50%; } }
