@@ -1,4 +1,26 @@
 .time-table-card{
   margin:0.5em 1em;
   min-height:6em;
+  
+
+  .card-content{
+    display:flex;
+  flex-direction:row;
+  .card-day{
+    float:right;
+    padding:0.5em 0em;
+    font-size: rem-calc(30);
+    flex-grow: 0;
+  }
+  .sehri-container,.iftari-container{
+    font-size: 20px;
+    padding:0.5em 0em; 
+    flex-grow: 1;
+    .sehri-description,.iftari-description{
+      margin:0.5em 0em;
+    }
+  }
+
+  
+}
 }

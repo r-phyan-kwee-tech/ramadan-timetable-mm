@@ -1,13 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import { AppCompatToolbar } from 'components'
-import { withStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
+import {AppCompatToolbar} from 'components'
+import {withStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import BottomDrawer from '../../components/BottomDrawer'
-import { getTimetableList, getOfflineTimetableList } from './actions/TimetableListAction'
+import Typography from '@material-ui/core/Typography';
+import {getTimetableList, getOfflineTimetableList} from './actions/TimetableListAction'
 
 const styles = theme => ({
     progress: {
@@ -15,7 +16,7 @@ const styles = theme => ({
         top: `calc(100vh/2)`,
         left: `calc(100vw/2.1)`,
         position: `fixed`
-    },
+    }
 });
 
 export class TimetableList extends React.Component {
@@ -46,49 +47,65 @@ export class TimetableList extends React.Component {
                                 return item
                             }
                         });
-                        
-                        this.setState({ days: days,loading:false });
+
+                        this.setState({days: days, loading: false});
                     }
                 }))
                 .catch((error) => {
                     console.log(error)
                 })
-        } else { }
+        } else {}
         //TODO Work with other props here
 
     }
     onMenuClick = () => {
         //TODO implement OnMenu click Here
-        this.setState({ bottom: true })
+        this.setState({bottom: true})
     }
 
     render() {
-        const { bottom,loading } = this.state;
-        const { classes } = this.props;
+        const {bottom, loading} = this.state;
+        const {classes} = this.props;
         let list = this
             .state
             .days
             .map((items, index) => {
                 return (
                     <Card key={index} className="time-table-card">
-                        <CardContent>{items.dayMm}</CardContent>
+                        <CardContent className="card-content">
+                            <Typography className="card-day" component="div">
+                                Day {items.day}
+                            </Typography>
+                            <Typography className="sehri-container" color="textSecondary" component="div">
+                                <Typography className="sehri-description">
+                                    {items.sehriTimeDesc}
+                                </Typography>
+                                <Typography className="sehri-time">
+                                    {items.sehriTime}
+                                </Typography>
+                            </Typography>
+
+                            <Typography className="iftari-container" color="textSecondary" component="div">
+                                <Typography className="iftari-description">
+                                    {items.iftariTimeDesc}
+                                </Typography>
+                                <Typography className="iftari-time">
+                                    {items.iftariTime}
+                                </Typography>
+                            </Typography>
+                        </CardContent>
                     </Card>
                 )
             })
 
-
         return (
             <div>
-                <AppCompatToolbar onMenuClick={this.onMenuClick} />
-                {loading &&
-                    <CircularProgress className={classes.progress} color="secondary" size={50} />
+                <AppCompatToolbar onMenuClick={this.onMenuClick}/> {loading && <CircularProgress className={classes.progress} color="secondary" size={50}/>
+}
+                {!loading && <div>{list}</div>
+}
 
-                }
-                {!loading &&
-                    <div>{list}</div>
-                }
-
-                <BottomDrawer isOpen={bottom} />
+                <BottomDrawer isOpen={bottom}/>
             </div>
         )
     }
@@ -102,5 +119,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-
-export default connect(state => ({ items: state.TimetableListReducer.items, paging: state.TimetableListReducer.paging, error: state.TimetableListReducer.error }), mapDispatchToProps)(withStyles(styles)(TimetableList));
+export default connect(state => ({items: state.TimetableListReducer.items, paging: state.TimetableListReducer.paging, error: state.TimetableListReducer.error}), mapDispatchToProps)(withStyles(styles)(TimetableList));
