@@ -1,13 +1,18 @@
-
-import { GET_COUNTRY_LIST_REQUEST, GET_COUNTRY_LIST_SUCCESS, GET_COUNTRY_LIST_FAILED,
-    GET_STATE_LIST_REQUEST, GET_STATE_LIST_SUCCESS, GET_STATE_LIST_FAILED} from '../../../constants/ActionTypes'
+import {
+    GET_COUNTRY_LIST_REQUEST,
+    GET_COUNTRY_LIST_SUCCESS,
+    GET_COUNTRY_LIST_FAILED,
+    GET_STATE_LIST_REQUEST,
+    GET_STATE_LIST_SUCCESS,
+    GET_STATE_LIST_FAILED
+} from '../../../constants/ActionTypes'
 const initialState = {
     isFetching: false,
     items: [],
     error: {}
 };
 
-export default function countryStateListReducer(state = initialState, action) {
+export default function settingsReducer(state = initialState, action) {
     switch (action.type) {
         case GET_STATE_LIST_REQUEST:
         case GET_COUNTRY_LIST_REQUEST:
@@ -20,7 +25,7 @@ export default function countryStateListReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: true,
                 items: action.response.data.days.data
-                
+
             });
         case GET_STATE_LIST_FAILED:
         case GET_COUNTRY_LIST_FAILED:
