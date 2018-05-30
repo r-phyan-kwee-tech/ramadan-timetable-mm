@@ -1,5 +1,5 @@
 import React from 'react'
-import {App,TimetableList} from 'containers'
+import {App, TimetableList, Settings} from 'containers'
 // import {BrowserRouter as Router, Route} from 'react-router-dom' import
 import {Route} from 'react-router-dom'
 import {ConnectedRouter} from 'react-router-redux'
@@ -10,8 +10,10 @@ const Container = styled.div `text-align: center;`
 export default() => (
   <ConnectedRouter history={createHistory()}>
     <Container>
-      <Route path="/" component={TimetableList}/>
-
+      <Route path="/" component={App}>
+        <Route path="/settings" component={Settings}/>
+        <Route path="/timetablelist" component={TimetableList}/>
+      </Route>
     </Container>
   </ConnectedRouter>
 )

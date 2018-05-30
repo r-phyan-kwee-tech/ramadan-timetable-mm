@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { AppCompatToolbar } from 'components'
-import { createStructuredSelector, createSelector } from 'reselect'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {AppCompatToolbar} from 'components'
+import {createStructuredSelector, createSelector} from 'reselect'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import * as CounterActions from 'actions/counter'
 import BottomDrawer from '../components/BottomDrawer'
 
@@ -21,7 +21,7 @@ class CounterContainer extends React.Component {
   }
 
   toggleDrawer = (side, open) => () => {
-    this.setState({ [side]: open });
+    this.setState({[side]: open});
   };
 
   increment = () => {
@@ -44,19 +44,21 @@ class CounterContainer extends React.Component {
 
   onMenuClick = () => {
     //TODO implement OnMenu click Here
-    this.setState({ bottom: true })
+    this.setState({bottom: true})
   }
 
   render() {
-    const { bottom } = this.state;
+    const {bottom} = this.state;
     return (
       <div>
-        <AppCompatToolbar onMenuClick={this.onMenuClick} /> {/* <Counter
+        {/* <AppCompatToolbar onMenuClick={this.onMenuClick} />  */}
+        {/* <Counter
           counter={this.props.counter}
           increment={this.increment}
           decrement={this.decrement}
           incrementIfOdd={this.incrementIfOdd}/> */}
-        <BottomDrawer isOpen={bottom} />
+        {/* <BottomDrawer isOpen={bottom} /> */}
+        {this.props.children}
       </div>
     )
   }
