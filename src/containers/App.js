@@ -20,10 +20,6 @@ class CounterContainer extends React.Component {
     counter: PropTypes.number.isRequired
   }
 
-  toggleDrawer = (side, open) => () => {
-    this.setState({[side]: open});
-  };
-
   increment = () => {
     this
       .props
@@ -48,7 +44,7 @@ class CounterContainer extends React.Component {
   }
 
   render() {
-    const {bottom} = this.state;
+
     return (
       <div>
         {/* <AppCompatToolbar onMenuClick={this.onMenuClick} />  */}

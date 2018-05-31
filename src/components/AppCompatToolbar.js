@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import TuneIcon from "@material-ui/icons/Tune";
 import IconButton from '@material-ui/core/IconButton';
 
+import Icon from '@material-ui/core/Icon';
+
 const styles = theme => ({
   root: {
     flexGrow: 0,
@@ -33,21 +35,30 @@ const styles = theme => ({
 });
 
 const AppCompatToolbar = (props) => {
-  const {classes} = props;
+  const {classes, isDisplayHomeEnabled, hasMenuButton, title} = props;
   return (
     <div className="app-toolbar">
       <AppBar position="static" color="default">
         <Toolbar className="mytoolbar">
+          {isDisplayHomeEnabled && <IconButton
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="Menu"
+            onClick={() => props.onBackButtonClick()}>
+            <Icon>arrow_back_ios</Icon>
+          </IconButton>}
+
           <Typography variant="title" color="inherit" className={classes.flex}>
-            ရန်ကုန်တိုင်: အချိန်ဇယား
+            {title}
           </Typography>
           <div className={classes.iconContainer}>
-            <IconButton
+            {hasMenuButton && <IconButton
               className={classes.button}
               aria-label="Delete"
               onClick={() => props.onMenuClick()}>
               <TuneIcon/>
-            </IconButton>
+            </IconButton>}
+
           </div>
         </Toolbar>
       </AppBar>
@@ -56,7 +67,11 @@ const AppCompatToolbar = (props) => {
 }
 
 AppCompatToolbar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  onBackButtonClick: PropTypes.func,
+  onMenuClick: PropTypes.func,
+  isDisplayHomeEnabled: PropTypes.bool,
+  title: PropTypes.string
 };
 
 export default withStyles(styles)(AppCompatToolbar);

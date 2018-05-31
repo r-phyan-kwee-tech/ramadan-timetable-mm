@@ -8,9 +8,10 @@
   flex-direction:row;
   .card-day{
     float:right;
+    
     padding:0.5em 0em;
     font-size: rem-calc(30);
-    flex-grow: 0;
+    flex-grow: 1;
   }
   .sehri-container,.iftari-container{
     font-size: 20px;

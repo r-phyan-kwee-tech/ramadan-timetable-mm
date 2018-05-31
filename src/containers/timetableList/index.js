@@ -100,7 +100,10 @@ export class TimetableList extends React.Component {
 
         return (
             <div>
-                <AppCompatToolbar onMenuClick={this.onMenuClick}/> {loading && <CircularProgress className={classes.progress} color="secondary" size={50}/>
+                <AppCompatToolbar
+                    onMenuClick={this.onMenuClick}
+                    hasMenuButton={true}
+                    title="ရန်ကုန်တိုင်: အချိန်ဇယား"/> {loading && <CircularProgress className={classes.progress} color="secondary" size={50}/>
 }
                 {!loading && <div>{list}</div>
 }
