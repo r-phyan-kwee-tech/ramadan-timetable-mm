@@ -1,22 +1,17 @@
-
-import { CALL_API } from '../../../middleware/api';
+import {CALL_API} from '../../../middleware/api';
 import {
-    GET_COUNTRY_LIST_REQUEST, GET_COUNTRY_LIST_SUCCESS, GET_COUNTRY_LIST_FAILED,
-    GET_STATE_LIST_REQUEST, GET_STATE_LIST_SUCCESS, GET_STATE_LIST_FAILED
+    GET_COUNTRY_LIST_REQUEST,
+    GET_COUNTRY_LIST_SUCCESS,
+    GET_COUNTRY_LIST_FAILED,
+    GET_STATE_LIST_REQUEST,
+    GET_STATE_LIST_SUCCESS,
+    GET_STATE_LIST_FAILED
 } from '../../../constants/ActionTypes'
+import db from '../../../utils/db';
 
 export function getCountryList(limit, page) {
-    var query = "{\n" +
-        "  countries(limit: " + limit + ", page: " + page + ") {\n" +
-        "    data {\n" +
-        "      id\n" +
-        "      objectId\n" +
-        "      name\n" +
-        "      createdDate\n" +
-        "      updatedDate\n" +
-        "    }\n" +
-        "  }\n" +
-        "}"
+    var query = "{\n  countries(limit: " + limit + ", page: " + page + ") {\n    data {\n      id\n      objectId\n      name\n      createdDate\n      " +
+            "updatedDate\n    }\n  }\n}"
     return {
         [CALL_API]: {
             types: [
@@ -30,20 +25,8 @@ export function getCountryList(limit, page) {
 }
 
 export function getStateList(limit, page, countryId) {
-    var query = "{\n" +
-        "  states(limit: " + limit + ", page: " + page + ", countryId: \"" + countryId + "\") {\n" +
-        "    data {\n" +
-        "      id\n" +
-        "      objectId\n" +
-        "      nameMmUni\n" +
-        "      nameMmZawgyi\n" +
-        "      countryId\n" +
-        "      createdDate\n" +
-        "      updatedDate\n" +
-        "    }\n" +
-        "  }\n" +
-        "}"
-
+    var query = "{\n  states(limit: " + limit + ", page: " + page + ", countryId: \"" + countryId + "\") {\n    data {\n      id\n      objectId\n      nameMmUni\n      nameMmZawgyi" +
+            "\n      countryId\n      createdDate\n      updatedDate\n    }\n  }\n}"
     return {
         [CALL_API]: {
             types: [
@@ -52,5 +35,25 @@ export function getStateList(limit, page, countryId) {
             endpoint: `api?query=${query}`,
             method: 'get'
         }
+    }
+}
+
+export function getOfflineCountries(limit, page) {
+    return (dispatch) => {
+        db
+            .table('country')
+            .toArray()
+            .then((countries) => {
+                dispatch({
+                    type: GET_COUNTRY_LIST_SUCCESS,
+                    response: {
+                        data: {
+                            countries: {
+                                data: countries
+                            }
+                        }
+                    }
+                });
+            })
     }
 }
