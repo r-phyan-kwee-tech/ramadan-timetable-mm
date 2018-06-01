@@ -1,23 +1,43 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import Home from '@material-ui/icons/Home';
+import {Link} from 'react-router-dom'
+import {withStyles} from '@material-ui/core/styles';
+
+const styles = theme => ({
+  a: {
+    textDecoration: `inherit`,
+    color: `inherit`
+  },
+  notFoundWrapper: {
+    display: `flex`,
+    justifyContent: `center`
+  },
+  notFoundText: {
+    flexDirection: `row`,
+    fontFamily: `Open Sans, sans-serif`,
+    fontSize: `calc(6em)`
+  }
+
+})
+
 const NotFound = (props) => {
+  const {classes} = props;
   return (
     <div>
-      <div id="clouds">
-        <div className="cloud x1"></div>
-        <div className="cloud x1_5"></div>
-        <div className="cloud x2"></div>
-        <div className="cloud x3"></div>
-        <div className="cloud x4"></div>
-        <div className="cloud x5"></div>
+      <div className={classes.notFoundWrapper}>
+        <h1 className={classes.notFoundText}>404</h1>
       </div>
-      <div className='c'>
-        <div className='_404'>404</div>
-        <hr/>
-        <div className='_1'>THE PAGE</div>
-        <div className='_2'>WAS NOT FOUND</div>
-        <a className='btn' href='#'>BACK TO MARS</a>
+      <div className={classes.notFoundWrapper}>
+        <Link to="/" className={classes.a}>
+          <Button variant="raised" color="primary">
+            Back to Home
+            <Home/>
+          </Button>
+        </Link>
       </div>
+
     </div>
   )
 }
-export default NotFound;
+export default withStyles(styles)(NotFound);
