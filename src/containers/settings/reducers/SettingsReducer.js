@@ -9,7 +9,8 @@ import {
 import db from '../../../utils/db'
 const initialState = {
     isFetching: false,
-    items: [],
+    countries: [],
+    states:[],
     error: {}
 };
 
@@ -19,32 +20,34 @@ export default function settingsReducer(state = initialState, action) {
         case GET_COUNTRY_LIST_REQUEST:
             return Object.assign({}, state, {
                 isFetching: false,
-                items: []
+                countries: [],
+    states:[]
             });
 
         case GET_COUNTRY_LIST_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: true,
-                items: saveCountries(action.response.data.countries.data)
+                countries: saveCountries(action.response.data.countries.data)
             });
         case GET_STATE_LIST_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: true,
-                items: saveStates(action.response.data.states.data)
+                states: saveStates(action.response.data.states.data)
             });
 
         case GET_STATE_LIST_FAILED:
         case GET_COUNTRY_LIST_FAILED:
             return Object.assign({}, state, {
                 isFetching: false,
-                items: []
+                countries: [],
+    states:[]
             });
         default:
             return initialState;
     }
 }
 
-async function saveCountries(countries) {
+function saveCountries(countries) {
 
     db
         .country
@@ -54,7 +57,7 @@ async function saveCountries(countries) {
     return countries
 }
 
-async function saveStates(states) {
+function saveStates(states) {
     db
         .states
         .bulkAdd(states)
