@@ -1,14 +1,14 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux'
-import {AppCompatToolbar} from 'components'
-import {withStyles} from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { AppCompatToolbar } from 'components'
+import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import BottomDrawer from '../../components/BottomDrawer'
 import Typography from '@material-ui/core/Typography';
-import {getTimetableList, getOfflineTimetableList} from './actions/TimetableListAction'
+import { getTimetableList, getOfflineTimetableList } from './actions/TimetableListAction'
 
 const styles = theme => ({
     progress: {
@@ -33,39 +33,33 @@ export class TimetableList extends React.Component {
     }
 
     componentWillReceiveProps(props) {
-        if (!Array.isArray(props.items)) {
-            props
-                .items
-                .then((items => {
-                    if (items.length === 0) {
-                        this
-                            .props
-                            .getTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09")
-                    } else {
-                        let days = items.filter((item) => {
-                            if (new Date(item.calendarDay.split("/")[0], item.calendarDay.split("/")[1] - 1, item.calendarDay.split("/")[2]).addDays(1).getTime() >= new Date().getTime() && new Date(item.calendarDay.split("/")[0], item.calendarDay.split("/")[1] - 1, item.calendarDay.split("/")[2]).getTime() < new Date().addDays(365).getTime()) {
-                                return item
-                            }
-                        });
 
-                        this.setState({days: days, loading: false});
-                    }
-                }))
-                .catch((error) => {
-                    console.log(error)
-                })
-        } else {}
-        //TODO Work with other props here
+        const { items, isLoading } = props
+        if (items) {
+
+            if (items.length === 0 && isLoading) {
+
+                this
+                    .props
+                    .getTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09")
+            } else if (items.length != 0 && isLoading) {
+
+                this.setState({ days: items, loading: false });
+
+            }
+        }
 
     }
+
     onMenuClick = () => {
         //TODO implement OnMenu click Here
-        this.setState({bottom: true})
+        this.setState({ bottom: true })
     }
 
+
     render() {
-        const {bottom, loading} = this.state;
-        const {classes} = this.props;
+        const { bottom, loading } = this.state;
+        const { classes } = this.props;
         let list = this
             .state
             .days
@@ -103,12 +97,12 @@ export class TimetableList extends React.Component {
                 <AppCompatToolbar
                     onMenuClick={this.onMenuClick}
                     hasMenuButton={true}
-                    title="ရန်ကုန်တိုင်: အချိန်ဇယား"/> {loading && <CircularProgress className={classes.progress} color="secondary" size={50}/>
-}
+                    title="ရန်ကုန်တိုင်: အချိန်ဇယား" /> {loading && <CircularProgress className={classes.progress} color="secondary" size={50} />
+                }
                 {!loading && <div>{list}</div>
-}
+                }
 
-                <BottomDrawer isOpen={bottom}/>
+                <BottomDrawer isOpen={bottom} />
             </div>
         )
     }
@@ -122,4 +116,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(state => ({items: state.TimetableListReducer.items, paging: state.TimetableListReducer.paging, error: state.TimetableListReducer.error}), mapDispatchToProps)(withStyles(styles)(TimetableList));
+export default connect(state => ({ items: state.TimetableListReducer.items, isLoading: state.TimetableListReducer.isFetching, paging: state.TimetableListReducer.paging, error: state.TimetableListReducer.error }), mapDispatchToProps)(withStyles(styles)(TimetableList));

@@ -1,4 +1,4 @@
-import {GET_TIME_TABLE_LIST_REQUEST, GET_TIME_TABLE_LIST_SUCCESS, GET_TIME_TABLE_LIST_FAILED} from '../../../constants/ActionTypes'
+import { GET_TIME_TABLE_LIST_REQUEST, GET_TIME_TABLE_LIST_SUCCESS, GET_TIME_TABLE_LIST_FAILED } from '../../../constants/ActionTypes'
 import db from '../../../utils/db'
 const initialState = {
     isFetching: false,
@@ -30,11 +30,15 @@ export default function timetableListReducer(state = initialState, action, paylo
     }
 }
 
-async function saveTimeTableDays(days) {
+function saveTimeTableDays(days) {
     db
         .days
         .bulkAdd(days)
-        .then((resolve, reject) => {})
-        .catch((err) => {});
-    return days
+        .then((resolve, reject) => { })
+        .catch((err) => { });
+    return days.filter((item) => {
+        if (new Date(item.calendarDay.split("/")[0], item.calendarDay.split("/")[1] - 1, item.calendarDay.split("/")[2]).addDays(1).getTime() >= new Date().getTime() && new Date(item.calendarDay.split("/")[0], item.calendarDay.split("/")[1] - 1, item.calendarDay.split("/")[2]).getTime() < new Date().addDays(365).getTime()) {
+            return item
+        }
+    })
 }
