@@ -26,7 +26,6 @@ export class TimetableList extends React.Component {
         loading: true
     };
     componentWillMount() {
-        // console.log(this.props.route.push('/'))
         this
             .props
             .getOfflineTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09")
@@ -36,16 +35,12 @@ export class TimetableList extends React.Component {
 
         const { items, isLoading } = props
         if (items) {
-
             if (items.length === 0 && isLoading) {
-
                 this
                     .props
                     .getTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09")
             } else if (items.length != 0 && isLoading) {
-
                 this.setState({ days: items, loading: false });
-
             }
         }
 

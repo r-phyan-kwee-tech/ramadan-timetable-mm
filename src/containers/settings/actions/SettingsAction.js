@@ -64,6 +64,7 @@ export function getOfflineStates(limit, page, countryId) {
             .table('states')
             .where('countryId')
             .equals(countryId)
+            .toArray()
             .then((states) => {
                 dispatch({
                     type: GET_STATE_LIST_SUCCESS,
