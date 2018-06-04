@@ -38,23 +38,18 @@ const styles = theme => ({
 class FontSelectorFragment extends React.Component {
 
   state = {
-    checked: !(storage.getItem(FONT_SELECTION) === 'true')
+    checked: (!storage.getItem(FONT_SELECTION)) ? false : !(storage.getItem(FONT_SELECTION) == 'true')
   };
 
   handleChange = name => event => {
 
-    console.log(storage.getItem(FONT_SELECTION));
     this.setState({ [name]: event.target.checked });
-    // storage.setItem(FONT_SELECTION, event.target.checked)
-    // console.log(storage.getItem(FONT_SELECTION))
-    // storage.setItem(FONT_SELECTION, !event.target.checked)
-
-
+    storage.setItem(FONT_SELECTION, !event.target.checked)
   };
 
   render() {
     const { classes } = this.props;
-    console.log(this.state)
+
     return (
       <div>
         <Card className="time-table-card">
@@ -68,7 +63,7 @@ class FontSelectorFragment extends React.Component {
           </Typography>
               <Typography className={classes.cardDesc} component="div">
                 <Switch
-                  checked={this.state.isZawgyi}
+                  checked={this.state.checked}
                   onChange={this.handleChange("checked")}
                   value="checked"
                 />
