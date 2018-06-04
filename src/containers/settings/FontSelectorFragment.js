@@ -4,12 +4,13 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Switch from '@material-ui/core/Switch';
-
+import { isLocalStorageSupported, MockStorage } from '../../utils/utils'
+import { FONT_SELECTION } from '../../constants/ActionTypes';
+const storage = isLocalStorageSupported() ? localStorage : new MockStorage();
 const styles = theme => ({
 
   cardDesc: {
     float: `right`,
-
     fontSize: `20px`,
     flexGrow: `1`,
     textAlign: `center`,
@@ -37,20 +38,27 @@ const styles = theme => ({
 class FontSelectorFragment extends React.Component {
 
   state = {
-    checkedA: true,
-    checkedB: true,
+    checked: !(storage.getItem(FONT_SELECTION) === 'true')
   };
 
   handleChange = name => event => {
+
+    console.log(storage.getItem(FONT_SELECTION));
     this.setState({ [name]: event.target.checked });
+    // storage.setItem(FONT_SELECTION, event.target.checked)
+    // console.log(storage.getItem(FONT_SELECTION))
+    // storage.setItem(FONT_SELECTION, !event.target.checked)
+
+
   };
 
   render() {
     const { classes } = this.props;
+    console.log(this.state)
     return (
       <div>
         <Card className="time-table-card">
-          <CardContent classes="card-content">
+          <CardContent>
             <div className={classes.cardTitle}>
               Please Select font
           </div>
@@ -60,10 +68,9 @@ class FontSelectorFragment extends React.Component {
           </Typography>
               <Typography className={classes.cardDesc} component="div">
                 <Switch
-
-                  checked={this.state.checkedA}
-                  onChange={this.handleChange('checkedA')}
-                  value="checkedA"
+                  checked={this.state.isZawgyi}
+                  onChange={this.handleChange("checked")}
+                  value="checked"
                 />
               </Typography>
               <Typography className={classes.cardDesc} component="div">
