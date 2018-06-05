@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { withStyles } from '@material-ui/core/styles';
-import { PropsRoute } from 'react-router-with-props';
 import { AppCompatToolbar } from 'components'
 import { getTimetableDetail, getOfflineTimetableDetail } from './actions/TimeTableDetailActions'
 import TimeTableDetailsFragment from './TimetableDetailFragment';
