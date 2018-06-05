@@ -1,4 +1,5 @@
 import { GET_TIME_TABLE_DETAIL_REQUEST, GET_TIME_TABLE_DETAIL_SUCCESS, GET_TIME_TABLE_DETAIL_FAILED } from '../../../constants/ActionTypes'
+import db from '../../../utils/db'
 const initialState = {
     isFetching: false,
     item: {},
@@ -10,20 +11,26 @@ export default function timetableDetailReducer(state = initialState, action) {
         case GET_TIME_TABLE_DETAIL_REQUEST:
             return Object.assign({}, state, {
                 isFetching: false,
-                items: {}
+                item: {}
             });
         case GET_TIME_TABLE_DETAIL_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: true,
-                item: action.response.data.day
-                
+                item: saveTimeTableDay(action.response.data.day)
+
             })
         case GET_TIME_TABLE_DETAIL_FAILED:
             return Object.assign({}, state, {
                 isFetching: false,
-                item: []
+                item: {}
             });
         default:
             return initialState;
     }
+}
+
+
+function saveTimeTableDay(day) {
+    db.days.add(day).then((resolve, reject) => { }).catch((err) => { });
+    return day
 }

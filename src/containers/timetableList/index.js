@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 import { AppCompatToolbar } from 'components'
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -16,6 +17,10 @@ const styles = theme => ({
         top: `calc(100vh/2)`,
         left: `calc(100vw/2.1)`,
         position: `fixed`
+    },
+    a: {
+        textDecoration: `inherit`,
+        color: `inherit`
     }
 });
 
@@ -60,30 +65,32 @@ export class TimetableList extends React.Component {
             .days
             .map((items, index) => {
                 return (
-                    <Card key={index} className="time-table-card">
-                        <CardContent className="card-content">
-                            <Typography className="card-day" component="div">
-                                Day {items.day}
-                            </Typography>
-                            <Typography className="sehri-container" color="textSecondary" component="div">
-                                <Typography className="sehri-description">
-                                    {items.sehriTimeDesc}
+                    <Link key={index} to={`/details/${items.objectId}`} className={classes.a}>
+                        <Card className="time-table-card">
+                            <CardContent className="card-content">
+                                <Typography className="card-day" component="div">
+                                    Day {items.day}
                                 </Typography>
-                                <Typography className="sehri-time">
-                                    {items.sehriTime}
+                                <Typography className="sehri-container" color="textSecondary" component="div">
+                                    <Typography className="sehri-description">
+                                        {items.sehriTimeDesc}
+                                    </Typography>
+                                    <Typography className="sehri-time">
+                                        {items.sehriTime}
+                                    </Typography>
                                 </Typography>
-                            </Typography>
 
-                            <Typography className="iftari-container" color="textSecondary" component="div">
-                                <Typography className="iftari-description">
-                                    {items.iftariTimeDesc}
+                                <Typography className="iftari-container" color="textSecondary" component="div">
+                                    <Typography className="iftari-description">
+                                        {items.iftariTimeDesc}
+                                    </Typography>
+                                    <Typography className="iftari-time">
+                                        {items.iftariTime}
+                                    </Typography>
                                 </Typography>
-                                <Typography className="iftari-time">
-                                    {items.iftariTime}
-                                </Typography>
-                            </Typography>
-                        </CardContent>
-                    </Card>
+                            </CardContent>
+                        </Card>
+                    </Link>
                 )
             })
 

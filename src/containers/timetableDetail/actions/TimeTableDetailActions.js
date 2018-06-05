@@ -1,5 +1,6 @@
 import { CALL_API } from '../../../middleware/api';
 import { GET_TIME_TABLE_DETAIL_REQUEST, GET_TIME_TABLE_DETAIL_SUCCESS, GET_TIME_TABLE_DETAIL_FAILED } from '../../../constants/ActionTypes'
+import db from '../../../utils/db';
 
 export function getTimetableDetail(dayId) {
     var query = "{\n" +
@@ -38,4 +39,26 @@ export function getTimetableDetail(dayId) {
             method: 'get'
         }
     }
+}
+
+
+
+export function getOfflineTimetableDetail(dayId) {
+    return (dispatch) => {
+        db
+            .table('days')
+            .where('objectId')
+            .equals(dayId)
+            .first()
+            .then((day) => {
+                dispatch({
+                    type: GET_TIME_TABLE_DETAIL_SUCCESS,
+                    response: {
+                        data: {
+                            day: day
+                        }
+                    }
+                });
+            });
+    };
 }
