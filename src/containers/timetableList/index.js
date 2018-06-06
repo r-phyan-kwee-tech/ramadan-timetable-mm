@@ -33,17 +33,17 @@ export class TimetableList extends React.Component {
     componentWillMount() {
         this
             .props
-            .getOfflineTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09")
+            .getOfflineTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09");
     }
 
     componentWillReceiveProps(props) {
 
-        const { items, isLoading } = props
+        const { items, isLoading } = props;
         if (items) {
             if (items.length === 0 && isLoading) {
                 this
                     .props
-                    .getTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09")
+                    .getTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09");
             } else if (items.length != 0 && isLoading) {
                 this.setState({ days: items, loading: false });
             }
@@ -51,9 +51,13 @@ export class TimetableList extends React.Component {
 
     }
 
+    onCardClick = (e, b) => {
+        this.props.history.push(b);
+    }
+
     onMenuClick = () => {
         //TODO implement OnMenu click Here
-        this.setState({ bottom: true })
+        this.setState({ bottom: true });
     }
 
 
@@ -65,32 +69,30 @@ export class TimetableList extends React.Component {
             .days
             .map((items, index) => {
                 return (
-                    <Link key={index} to={`/details/${items.objectId}`} className={classes.a}>
-                        <Card className="time-table-card">
-                            <CardContent className="card-content">
-                                <Typography className="card-day" component="div">
-                                    Day {items.day}
+                    <Card key={index} onClick={((e) => this.onCardClick(e, "/details/" + items.objectId))} className="time-table-card">
+                        < CardContent className="card-content" >
+                            <Typography className="card-day" component="div">
+                                Day {items.day}
+                            </Typography>
+                            <Typography className="sehri-container" color="textSecondary" component="div">
+                                <Typography className="sehri-description">
+                                    {items.sehriTimeDesc}
                                 </Typography>
-                                <Typography className="sehri-container" color="textSecondary" component="div">
-                                    <Typography className="sehri-description">
-                                        {items.sehriTimeDesc}
-                                    </Typography>
-                                    <Typography className="sehri-time">
-                                        {items.sehriTime}
-                                    </Typography>
+                                <Typography className="sehri-time">
+                                    {items.sehriTime}
                                 </Typography>
+                            </Typography>
 
-                                <Typography className="iftari-container" color="textSecondary" component="div">
-                                    <Typography className="iftari-description">
-                                        {items.iftariTimeDesc}
-                                    </Typography>
-                                    <Typography className="iftari-time">
-                                        {items.iftariTime}
-                                    </Typography>
+                            <Typography className="iftari-container" color="textSecondary" component="div">
+                                <Typography className="iftari-description">
+                                    {items.iftariTimeDesc}
                                 </Typography>
-                            </CardContent>
-                        </Card>
-                    </Link>
+                                <Typography className="iftari-time">
+                                    {items.iftariTime}
+                                </Typography>
+                            </Typography>
+                        </CardContent >
+                    </Card >
                 )
             })
 
@@ -99,13 +101,15 @@ export class TimetableList extends React.Component {
                 <AppCompatToolbar
                     onMenuClick={this.onMenuClick}
                     hasMenuButton={true}
-                    title="ရန်ကုန်တိုင်: အချိန်ဇယား" /> {loading && <CircularProgress className={classes.progress} color="secondary" size={50} />
+                    title="ရန်ကုန်တိုင်: အချိန်ဇယား" /> {
+                    loading && <CircularProgress className={classes.progress} color="secondary" size={50} />
                 }
-                {!loading && <div>{list}</div>
+                {
+                    !loading && <div>{list}</div>
                 }
 
                 <BottomDrawer isOpen={bottom} />
-            </div>
+            </div >
         )
     }
 

@@ -18,7 +18,7 @@ export default function timetableDetailReducer(state = initialState, action) {
                 isFetching: true,
                 item: saveTimeTableDay(action.response.data.day)
 
-            })
+            });
         case GET_TIME_TABLE_DETAIL_FAILED:
             return Object.assign({}, state, {
                 isFetching: false,

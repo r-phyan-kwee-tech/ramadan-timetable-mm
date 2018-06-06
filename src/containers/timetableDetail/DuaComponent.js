@@ -23,7 +23,7 @@ const styles = theme => ({
     wordWrap: `break-word`
 
   }
-})
+});
 
 const DuaComponent = (props) => {
   const { classes } = props;

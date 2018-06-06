@@ -62,13 +62,12 @@ class TimeTableDetails extends React.Component {
 
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     getOfflineTimetableDetail,
     getTimetableDetail
-  }, dispatch);
+  }, dispatch)
 }
-
 export default connect(state => ({ item: state.TimeTableDetailReducer.item, isLoading: state.TimeTableDetailReducer.isFetching, error: state.TimeTableDetailReducer.error }), mapDispatchToProps)(withStyles(styles)(TimeTableDetails));
 
 

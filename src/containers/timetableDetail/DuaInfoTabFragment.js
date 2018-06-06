@@ -19,7 +19,7 @@ const styles = theme => ({
   }
 });
 const DuaInfoTabFragment = (props) => {
-  const { classes } = props
+  const { classes } = props;
 
   return (<div>
 

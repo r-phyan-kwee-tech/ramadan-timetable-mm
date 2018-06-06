@@ -18,7 +18,7 @@ export default function timetableListReducer(state = initialState, action, paylo
                 isFetching: true,
                 items: saveTimeTableDays(action.response.data.days.data)
 
-            })
+            });
         case GET_TIME_TABLE_LIST_FAILED:
             return Object.assign({}, state, {
                 isFetching: false,
@@ -38,9 +38,9 @@ function saveTimeTableDays(days) {
         .catch((err) => { });
     return days.filter((item) => {
         if (new Date(item.calendarDay.split("/")[0], item.calendarDay.split("/")[1] - 1, item.calendarDay.split("/")[2]).addDays(1).getTime() >= new Date().getTime() && new Date(item.calendarDay.split("/")[0], item.calendarDay.split("/")[1] - 1, item.calendarDay.split("/")[2]).getTime() < new Date().addDays(365).getTime()) {
-            return item
-        }else{
-            return null
+            return item;
+        } else {
+            return null;
         }
-    })
+    });
 }
