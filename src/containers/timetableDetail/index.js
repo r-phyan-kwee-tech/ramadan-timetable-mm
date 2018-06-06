@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
+import { isZawgyi } from '../../utils/utils'
 import { withStyles } from '@material-ui/core/styles';
 import { AppCompatToolbar } from 'components'
 import { getTimetableDetail, getOfflineTimetableDetail } from './actions/TimeTableDetailActions'
@@ -55,7 +56,7 @@ class TimeTableDetails extends React.Component {
         title={title} />
       {
         dayItem &&
-        <TimeTableDetailsFragment {...dayItem} />
+        <TimeTableDetailsFragment isZawgyi={isZawgyi()} {...dayItem} />
       }
     </div>)
   }

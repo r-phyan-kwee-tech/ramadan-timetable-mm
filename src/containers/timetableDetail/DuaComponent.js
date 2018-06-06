@@ -1,4 +1,5 @@
 import React from 'react';
+import Rabbit from 'rabbit-node';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -26,19 +27,21 @@ const styles = theme => ({
 });
 
 const DuaComponent = (props) => {
-  const { classes } = props;
+  const { classes, isZawgyi } = props;
   return (<div className={classes.root}>
     <Typography className={classes.descriptionText} component="div">
-      ဝါချည်ချိန်ဖတ်ရန် ဒိုအာ
+      {!isZawgyi ? Rabbit.uni2zg("ဝါချည်ချိန်ဖတ်ရန် ဒိုအာ") : "ဝါချည်ချိန်ဖတ်ရန် ဒိုအာ"}
     </Typography>
     <Typography className={classes.duaText} component="div">
-      နဝိုင်း သိုအန် အစူးမာကဒန် မင်န် ရှိုင်ရန် ရမ်ဇမ်
+      {!isZawgyi ? Rabbit.uni2zg("နဝိုင်း သိုအန် အစူးမာကဒန် မင်န် ရှိုင်ရန် ရမ်ဇမ်") : "နဝိုင်း သိုအန် အစူးမာကဒန် မင်န် ရှိုင်ရန် ရမ်ဇမ်"}
+
     </Typography>
     <Typography className={classes.descriptionText} component="div">
-      ဝါဖြေချိန်ဖတ်ရန် ဒိုအာ
-</Typography>
+      {!isZawgyi ? Rabbit.uni2zg("ဝါဖြေချိန်ဖတ်ရန် ဒိုအာ") : "ဝါဖြေချိန်ဖတ်ရန် ဒိုအာ"}
+
+    </Typography>
     <Typography className={classes.duaText} component="div">
-      အလာဟ်ဟွန်းမာ လကာဆွန်းသို ဝဘေကာ အာ့မန်းသို ဝါ့အလဟ် ရစ်ဇ်တေကာ အပ်ဖ်တရ်သို
+      {!isZawgyi ? Rabbit.uni2zg("အလာဟ်ဟွန်းမာ လကာဆွန်းသို ဝဘေကာ အာ့မန်းသို ဝါ့အလဟ် ရစ်ဇ်တေကာ အပ်ဖ်တရ်သို") : "အလာဟ်ဟွန်းမာ လကာဆွန်းသို ဝဘေကာ အာ့မန်းသို ဝါ့အလဟ် ရစ်ဇ်တေကာ အပ်ဖ်တရ်သို"}
     </Typography>
   </div >)
 }

@@ -60,7 +60,6 @@ class StatesSelector extends React.Component {
 
 
     handleChange = event => {
-        console.log(event.target.value.split(",")[0]);
         storage.setItem(STATE_ID, event.target.value.split(",")[0])
         storage.setItem(STATE_NAME, event.target.value.split(",")[1])
         this.setState({ [event.target.name]: event.target.value })

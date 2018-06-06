@@ -32,7 +32,7 @@ const styles = theme => ({
 });
 
 const DetailHeader = (props) => {
-  const { classes, sehriTimeDescMmUni, day, iftariTimeDescMmUni, calendarDay, hijariDay, sehriTime, iftariTime } = props;
+  const { classes, sehriTimeDescMmUni, sehriTimeDescMmZawgyi, isZawgyi, day, iftariTimeDescMmUni, iftariTimeDescMmZawgyi, calendarDay, hijariDay, sehriTime, iftariTime } = props;
   return (
     <div className={classes.root}>
       <div className={classes.columnWrapper} >
@@ -46,13 +46,13 @@ const DetailHeader = (props) => {
       </div>
       <div className={classes.columnWrapper} style={{ paddingLeft: `2em`, paddingRight: `2em` }} >
         <Typography className={classes.descriptionText} component="div">
-          {sehriTimeDescMmUni}
+          {!isZawgyi ? sehriTimeDescMmZawgyi : sehriTimeDescMmUni}
         </Typography>
         <Typography className={classes.divider} component="div">
           <div style={{ background: `#000`, width: `2px`, height: `3em` }}></div>
         </Typography>
         <Typography className={classes.descriptionText} component="div">
-          {iftariTimeDescMmUni}
+          {!isZawgyi ? iftariTimeDescMmZawgyi : iftariTimeDescMmUni}
         </Typography>
       </div>
       <div className={classes.columnWrapper} style={{ paddingLeft: `2em`, paddingRight: `2em` }} >
@@ -66,7 +66,7 @@ const DetailHeader = (props) => {
           {iftariTime}
         </Typography>
       </div>
-      <DuaComponent />
+      <DuaComponent isZawgyi={isZawgyi} />
     </div>
   )
 }

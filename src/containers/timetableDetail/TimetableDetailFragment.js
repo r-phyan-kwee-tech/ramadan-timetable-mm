@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
+import Rabbit from 'rabbit-node';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import DetailHeader from './DetailHeader';
@@ -29,10 +30,10 @@ class TimeTableDetailsFragment extends React.Component {
   };
 
   render() {
-    const { classes, theme, duaMmUni, duaEn, duaAr } = this.props;
+    const { classes, theme, duaMmUni, duaMmZawgyi, duaEn, duaAr, isZawgyi } = this.props;
     return (
       <div className="root-container" >
-        <DetailHeader {...this.props} />
+        <DetailHeader isZawgyi={isZawgyi} {...this.props} />
         <div className="tab-container">
           <AppBar position="static" color="default">
             <Tabs
@@ -53,7 +54,7 @@ class TimeTableDetailsFragment extends React.Component {
             index={this.state.value}
             onChangeIndex={this.handleChangeIndex}
           >
-            <TabContainer dir={theme.direction}><DuaInfoTabFragment duaInfo={duaMmUni} title="ယနေ့ ဖတ်ရမည့်ဒိုအာ" /></TabContainer>
+            <TabContainer dir={theme.direction}><DuaInfoTabFragment duaInfo={isZawgyi ? duaMmUni : duaMmZawgyi} title={isZawgyi ? "ယနေ့ ဖတ်ရမည့်ဒိုအာ" : Rabbit.uni2zg("ယနေ့ ဖတ်ရမည့်ဒိုအာ")} /></TabContainer>
             <TabContainer dir={theme.direction}><DuaInfoTabFragment duaInfo={duaEn} title="Today Dua to ask for" /></TabContainer>
             <TabContainer dir={theme.direction}><DuaInfoTabFragment duaInfo={duaAr} title={`اليوم دعاء أن تطلب`} /></TabContainer>
           </SwipeableViews></div>
