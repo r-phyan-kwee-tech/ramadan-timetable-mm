@@ -1,3 +1,4 @@
+import { FONT_SELECTION } from '../constants/ActionTypes'
 export function isLocalStorageSupported() {
   var testKey = 'test', storage = window.localStorage;
   try {
@@ -26,4 +27,10 @@ export function MockStorage() {
       _this.store = {};
     }
   };
+}
+
+
+export function isZawgyi() {
+  const storage = isLocalStorageSupported() ? localStorage : new MockStorage();
+  return (!storage.getItem(FONT_SELECTION)) ? false : !(storage.getItem(FONT_SELECTION) == 'true')
 }

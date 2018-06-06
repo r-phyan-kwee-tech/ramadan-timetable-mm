@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
-import { AppCompatToolbar } from 'components'
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+import Rabbit from 'rabbit-node';
+import { AppCompatToolbar } from 'components';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import BottomDrawer from '../../components/BottomDrawer'
+import BottomDrawer from '../../components/BottomDrawer';
 import Typography from '@material-ui/core/Typography';
-import { getTimetableList, getOfflineTimetableList } from './actions/TimetableListAction'
-
+import { isLocalStorageSupported, MockStorage, isZawgyi } from '../../utils/utils';
+import { getTimetableList, getOfflineTimetableList } from './actions/TimetableListAction';
+import { STATE_ID, STATE_NAME } from '../../constants/ActionTypes';
+const storage = isLocalStorageSupported() ? localStorage : new MockStorage();
 const styles = theme => ({
     progress: {
 
@@ -33,7 +36,7 @@ export class TimetableList extends React.Component {
     componentWillMount() {
         this
             .props
-            .getOfflineTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09");
+            .getOfflineTimetableList(30, 1, (!storage.getItem(STATE_ID)) ? "2b8327dd7a094ba4a1eba90c4e426c09" : storage.getItem(STATE_ID));
     }
 
     componentWillReceiveProps(props) {
@@ -43,7 +46,7 @@ export class TimetableList extends React.Component {
             if (items.length === 0 && isLoading) {
                 this
                     .props
-                    .getTimetableList(30, 1, "2b8327dd7a094ba4a1eba90c4e426c09");
+                    .getTimetableList(30, 1, (!storage.getItem(STATE_ID)) ? "2b8327dd7a094ba4a1eba90c4e426c09" : storage.getItem(STATE_ID));
             } else if (items.length != 0 && isLoading) {
                 this.setState({ days: items, loading: false });
             }
@@ -101,7 +104,7 @@ export class TimetableList extends React.Component {
                 <AppCompatToolbar
                     onMenuClick={this.onMenuClick}
                     hasMenuButton={true}
-                    title="ရန်ကုန်တိုင်: အချိန်ဇယား" /> {
+                    title={isZawgyi() ? `${(!storage.getItem(STATE_NAME)) ? "ရန်ကုန်တိုင်း" : storage.getItem(STATE_NAME)} အချိန်ဇယား` : Rabbit.uni2zg(`${(!storage.getItem(STATE_NAME)) ? "ရန်ကုန်တိုင်း" : storage.getItem(STATE_NAME)}: အချိန်ဇယား`)} /> {
                     loading && <CircularProgress className={classes.progress} color="secondary" size={50} />
                 }
                 {

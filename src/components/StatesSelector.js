@@ -5,10 +5,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
+import Rabbit from 'rabbit-node';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-
-
+import { isLocalStorageSupported, MockStorage, isZawgyi } from '../utils/utils'
+import { STATE_ID, STATE_NAME } from '../constants/ActionTypes';
+const storage = isLocalStorageSupported() ? localStorage : new MockStorage();
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -58,6 +60,9 @@ class StatesSelector extends React.Component {
 
 
     handleChange = event => {
+        console.log(event.target.value.split(",")[0]);
+        storage.setItem(STATE_ID, event.target.value.split(",")[0])
+        storage.setItem(STATE_NAME, event.target.value.split(",")[1])
         this.setState({ [event.target.name]: event.target.value })
     }
 
@@ -87,7 +92,7 @@ class StatesSelector extends React.Component {
                                 {
                                     states &&
                                     states.map((item, index) => {
-                                        return (<MenuItem key={index} value={item.objectId}>{item.nameMmUni}</MenuItem>)
+                                        return (<MenuItem key={index} value={`${item.objectId},${item.nameMmUni}`}>{isZawgyi() ? item.nameMmUni : item.nameMmZawgyi}</MenuItem>)
                                     })
                                 }
                             </Select>
