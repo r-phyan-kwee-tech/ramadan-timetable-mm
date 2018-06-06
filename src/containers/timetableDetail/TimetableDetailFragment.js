@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
-import Rabbit from 'rabbit-node';
+import Rabbit from '../../utils/rabbit';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import DetailHeader from './DetailHeader';

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import Rabbit from 'rabbit-node';
+import Rabbit from '../../utils/rabbit';
 import { AppCompatToolbar } from 'components';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';

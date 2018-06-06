@@ -1,5 +1,5 @@
 import React from 'react';
-import Rabbit from 'rabbit-node';
+import Rabbit from '../../utils/rabbit';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
