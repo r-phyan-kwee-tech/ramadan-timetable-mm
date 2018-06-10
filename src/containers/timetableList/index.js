@@ -12,6 +12,7 @@ import BottomDrawer from '../../components/BottomDrawer';
 import Typography from '@material-ui/core/Typography';
 import { isLocalStorageSupported, MockStorage, isZawgyi } from '../../utils/utils';
 import { getTimetableList, getOfflineTimetableList } from './actions/TimetableListAction';
+import { getCountryList } from '../settings/actions/SettingsAction';
 import { STATE_ID, STATE_NAME } from '../../constants/ActionTypes';
 const storage = isLocalStorageSupported() ? localStorage : new MockStorage();
 const styles = theme => ({
@@ -34,6 +35,9 @@ export class TimetableList extends React.Component {
         loading: true
     };
     componentWillMount() {
+        this
+        .props
+        .getCountryList(50, 1)
         this
             .props
             .getOfflineTimetableList(30, 1, (!storage.getItem(STATE_ID)) ? "2b8327dd7a094ba4a1eba90c4e426c09" : storage.getItem(STATE_ID));
@@ -121,7 +125,8 @@ export class TimetableList extends React.Component {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getTimetableList,
-        getOfflineTimetableList
+        getOfflineTimetableList,
+        getCountryList
     }, dispatch);
 }
 

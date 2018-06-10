@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import icon from '../../assets/icon.png';
 const styles = theme => ({
   root: {
 
@@ -38,7 +39,7 @@ const CreditFragment = (props) => {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <img className={classes.img} src="/apple-touch-icon-120x120.png" width="80" height="80" />
+      <img className={classes.img} src={icon} width="80" height="80" />
       <Typography className={classes.appName} component="div">
         Ramadan Timetable
           </Typography>
