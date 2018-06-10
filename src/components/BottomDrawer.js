@@ -3,8 +3,8 @@ import Drawer from '@material-ui/core/Drawer';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import {Link} from 'react-router-dom'
-import {withStyles} from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles';
 import MyLocationIcon from "@material-ui/icons/MyLocation";
 import GroupIcon from "@material-ui/icons/Group";
 import FontDownloadIcon from "@material-ui/icons/FontDownload";
@@ -23,16 +23,22 @@ class BottomDrawer extends React.Component {
     }
 
     componentWillReceiveProps(props) {
-        this.setState({bottom: props.isOpen})
+        this.setState({ bottom: props.isOpen })
     }
 
     toggleDrawer = (side, open) => () => {
-        this.setState({[side]: open});
+        this.setState({ [side]: open });
     };
 
+    onListItemClick = (e, url) => {
+
+        this.props.history.push(url);
+
+    }
+
     render() {
-        const {bottom} = this.state;
-        const {classes} = this.props;
+        const { bottom } = this.state;
+        const { classes } = this.props;
         return (
             <Drawer
                 open={bottom}
@@ -43,39 +49,44 @@ class BottomDrawer extends React.Component {
                     onClick={this.toggleDrawer('bottom', false)}
                     onKeyDown={this.toggleDrawer('bottom', false)}>
                     <List >
-                        <Link to="/settings/locationSettings" className={classes.a}>
 
-                            <ListItem button>
 
-                                <MyLocationIcon/>
+                        <ListItem
+                            onClick={((e) => this.onListItemClick(e, "/settings/locationSettings"))}
+                            button>
 
-                                <ListItemText primary="Change Locations"/>
-                            </ListItem>
-                        </Link>
-                        <Link to="/settings/fontSettings" className={classes.a}>
-                            <ListItem button>
+                            <MyLocationIcon />
 
-                                <FontDownloadIcon/>
+                            <ListItemText primary="Change Locations" />
+                        </ListItem>
 
-                                <ListItemText primary="Font Settings"/>
-                            </ListItem>
-                        </Link>
-                        <Link to="/settings/credits" className={classes.a}>
-                            <ListItem button>
 
-                                <GroupIcon/>
+                        <ListItem
+                            onClick={((e) => this.onListItemClick(e, "/settings/fontSettings"))} button>
 
-                                <ListItemText primary="Credits"/>
-                            </ListItem>
-                        </Link>
-                        <Link to="/settings/license" className={classes.a}>
-                            <ListItem button>
+                            <FontDownloadIcon />
 
-                                <LocalLibraryIcon/>
+                            <ListItemText primary="Font Settings" />
+                        </ListItem>
 
-                                <ListItemText primary="Licenses"/>
-                            </ListItem>
-                        </Link>
+
+                        <ListItem
+                            onClick={((e) => this.onListItemClick(e, "/settings/credits"))} button>
+
+                            <GroupIcon />
+
+                            <ListItemText primary="Credits" />
+                        </ListItem>
+
+
+                        <ListItem
+                            onClick={((e) => this.onListItemClick(e, "/settings/license"))} button>
+
+                            <LocalLibraryIcon />
+
+                            <ListItemText primary="Licenses" />
+                        </ListItem>
+
                     </List>
                 </div>
             </Drawer>

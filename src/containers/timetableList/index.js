@@ -111,7 +111,7 @@ export class TimetableList extends React.Component {
                     !loading && <div>{list}</div>
                 }
 
-                <BottomDrawer isOpen={bottom} />
+                <BottomDrawer history={this.props.history} isOpen={bottom} />
             </div >
         )
     }
