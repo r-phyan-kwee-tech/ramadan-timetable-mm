@@ -49,7 +49,7 @@ class StatesSelector extends React.Component {
         if (this.props.states.length === states.length && isLoading == this.props.isLoading && countries.length == this.props.countries.length && countryId === this.props.countryId) {
             this
                 .props
-                .getStateList(50, 1, nextProps.countryId)
+                .getStateList(900, 1, nextProps.countryId)
         } else {
             if (states.length != 0) {
                 this.setState({ states: states })

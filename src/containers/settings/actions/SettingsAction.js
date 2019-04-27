@@ -66,12 +66,15 @@ export function getOfflineStates(limit, page, countryId) {
             .equals(countryId)
             .toArray()
             .then((states) => {
+                
                 dispatch({
                     type: GET_STATE_LIST_SUCCESS,
                     response: {
                         data: {
                             states: {
-                                data: states
+                                data: states.sort((a,b)=>{
+                                    return a.nameMmUni.split()[0].localeCompare(b.nameMmUni.split()[0])
+                                })
                             }
                         }
                     }
