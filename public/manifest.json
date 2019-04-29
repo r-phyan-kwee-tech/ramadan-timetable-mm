@@ -1,6 +1,13 @@
 {
   "short_name": "Ramadan Timetable MM",
   "name": "Ramadan Timetable MM",
+  "prefer_related_applications":true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.marmutech.ramdantimetable.ramadantimetable"
+    }
+  ],
   "icons": [
     {
       "src": "favicon.ico",
