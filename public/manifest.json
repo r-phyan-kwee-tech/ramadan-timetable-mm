@@ -1,19 +1,9 @@
 {
-  "short_name": "Ramadan Timetable MM",
   "name": "Ramadan Timetable MM",
-  "prefer_related_applications":true,
-  "related_applications": [
-    {
-      "platform": "play",
-      "id": "com.marmutech.ramdantimetable.ramadantimetable"
-    }
-  ],
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
+  "short_name": "Ramadan Timetable MM",
+  "prefer_related_applications":false,
+    "icons": [
+    
     {
       "src": "icon-72x72.png",
       "sizes": "72x72",
@@ -56,6 +46,7 @@
     }
   ],
   "start_url": "./",
+  "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#000000"
