@@ -1,14 +1,13 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Switch from '@material-ui/core/Switch';
-import { isLocalStorageSupported, MockStorage } from '../../utils/utils'
-import { FONT_SELECTION } from '../../constants/ActionTypes';
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Switch from "@material-ui/core/Switch";
+import { isLocalStorageSupported, MockStorage } from "../../utils/utils";
+import { FONT_SELECTION } from "../../constants/ActionTypes";
 const storage = isLocalStorageSupported() ? localStorage : new MockStorage();
 const styles = theme => ({
-
   cardDesc: {
     float: `right`,
     fontSize: `20px`,
@@ -31,20 +30,20 @@ const styles = theme => ({
     flexGrow: `1`
   },
   selectEmpty: {
-    marginTop: theme.spacing.unit * 2,
-  },
+    marginTop: theme.spacing.unit * 2
+  }
 });
 
 class FontSelectorFragment extends React.Component {
-
   state = {
-    checked: (!storage.getItem(FONT_SELECTION)) ? false : !(storage.getItem(FONT_SELECTION) == 'true')
+    checked: !storage.getItem(FONT_SELECTION)
+      ? false
+      : !(storage.getItem(FONT_SELECTION) === "true")
   };
 
   handleChange = name => event => {
-
     this.setState({ [name]: event.target.checked });
-    storage.setItem(FONT_SELECTION, !event.target.checked)
+    storage.setItem(FONT_SELECTION, !event.target.checked);
   };
 
   render() {
@@ -54,13 +53,11 @@ class FontSelectorFragment extends React.Component {
       <div>
         <Card className="time-table-card">
           <CardContent>
-            <div className={classes.cardTitle}>
-              Please Select font
-          </div>
+            <div className={classes.cardTitle}>Please Select font</div>
             <div className={classes.switchContainer}>
               <Typography className={classes.cardDesc} component="div">
                 ျမန္မာ
-          </Typography>
+              </Typography>
               <Typography className={classes.cardDesc} component="div">
                 <Switch
                   checked={this.state.checked}
@@ -70,12 +67,12 @@ class FontSelectorFragment extends React.Component {
               </Typography>
               <Typography className={classes.cardDesc} component="div">
                 မြန်မာ
-          </Typography>
+              </Typography>
             </div>
           </CardContent>
         </Card>
       </div>
-    )
+    );
   }
 }
 

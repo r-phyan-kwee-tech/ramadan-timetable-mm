@@ -1,11 +1,10 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
-import icon from '../../assets/icon.png';
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
+import icon from "../../assets/icon.png";
 const styles = theme => ({
   root: {
-
     display: `flex`,
     flexDirection: `column`
   },
@@ -35,25 +34,44 @@ const styles = theme => ({
     textAlign: `center`
   }
 });
-const CreditFragment = (props) => {
+const CreditFragment = props => {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <img className={classes.img} src={icon} width="80" height="80" />
+      <img
+        alt="credit_image"
+        className={classes.img}
+        src={icon}
+        width="80"
+        height="80"
+      />
       <Typography className={classes.appName} component="div">
         Ramadan Timetable
-          </Typography>
+      </Typography>
       <Typography className={classes.version} component="div">
         Version 1.0
-          </Typography>
+      </Typography>
       <Typography className={classes.commonText} component="div">
-        With the beginning of Ramadan, may your home be filled with the atmosphere of love and mirth. May your life be as wonderful as you are throughout the year. Ramadan Mubarak!
-          </Typography>
-      <ul className={classes.ul} >
-        <Typography className={classes.li} component="li">With Spcial Thanks To</Typography>
-        <Typography className={classes.li} component="li">Aung Myo Lwin</Typography>
-        <Typography className={classes.li} component="li">Win Htaik Aung</Typography>
-        <Typography className={classes.li} component="li">Khin Thin Zar(Translation)</Typography>
+        With the beginning of Ramadan, may your home be filled with the
+        atmosphere of love and mirth. May your life be as wonderful as you are
+        throughout the year. Ramadan Mubarak!
+      </Typography>
+      <ul className={classes.ul}>
+        <Typography className={classes.li} component="li">
+          With Spcial Thanks To
+        </Typography>
+        <Typography className={classes.li} component="li">
+          Yacoob Danka for his awesome calculation of timetable
+        </Typography>
+        <Typography className={classes.li} component="li">
+          Aung Myo Lwin
+        </Typography>
+        <Typography className={classes.li} component="li">
+          Win Htaik Aung
+        </Typography>
+        <Typography className={classes.li} component="li">
+          Khin Thin Zar(Translation)
+        </Typography>
       </ul>
       <Typography className={classes.commonText} component="div">
         Made With Love
@@ -61,23 +79,32 @@ const CreditFragment = (props) => {
       <Typography className={classes.commonText} component="div">
         Developed By R Phyan Kwees
       </Typography>
-      <Link target="_blank" to="https://github.com/r-phyan-kwee-tech/ramdhan-android">
+      <Link
+        target="_blank"
+        to="https://github.com/r-phyan-kwee-tech/ramdhan-android"
+      >
         <Typography className={classes.commonText} component="p">
-        Android Source
+          Android Source
         </Typography>
       </Link>
-      <Link target="_blank" to="https://github.com/r-phyan-kwee-tech/ramadan-timetable-mm">
+      <Link
+        target="_blank"
+        to="https://github.com/r-phyan-kwee-tech/ramadan-timetable-mm"
+      >
         <Typography className={classes.commonText} component="p">
-        Web App (PWA) Source
+          Web App (PWA) Source
         </Typography>
       </Link>
-      <Link target="_blank" to="https://github.com/r-phyan-kwee-tech/ramdhan-api">
+      <Link
+        target="_blank"
+        to="https://github.com/r-phyan-kwee-tech/ramdhan-api"
+      >
         <Typography className={classes.commonText} component="p">
-        Api Source
+          Api Source
         </Typography>
       </Link>
     </div>
-  )
+  );
 };
 
 export default withStyles(styles)(CreditFragment);
